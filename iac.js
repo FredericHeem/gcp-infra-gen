@@ -1,5 +1,5 @@
 const assert = require("assert");
-const { AwsProvider } = require("@grucloud/provider-aws");
+const { GoogleProvider } = require("@grucloud/provider-google");
 const hook = require("./hook");
 
 const createResources = async ({ provider, resources: {} }) => {
@@ -10,7 +10,7 @@ const createResources = async ({ provider, resources: {} }) => {
 exports.createResources = createResources;
 
 exports.createStack = async () => {
-  const provider = AwsProvider({ config: require("./config") });
+  const provider = GoogleProvider({ config: require("./config") });
   const { stage } = provider.config;
   assert(stage, "missing stage");
 
