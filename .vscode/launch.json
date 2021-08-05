@@ -46,28 +46,6 @@
       "port": 9229
     },
     {
-      "name": "Destroy",
-      "type": "node",
-      "request": "launch",
-      "runtimeExecutable": "gc",
-      "runtimeArgs": ["destroy", "-f"],
-      "internalConsoleOptions": "openOnSessionStart",
-      "console": "integratedTerminal",
-      "cwd": "${workspaceRoot}",
-      "port": 9229
-    },
-    {
-      "name": "Destroy All",
-      "type": "node",
-      "request": "launch",
-      "runtimeExecutable": "gc",
-      "runtimeArgs": ["destroy", "-f", "-a"],
-      "internalConsoleOptions": "openOnSessionStart",
-      "console": "integratedTerminal",
-      "cwd": "${workspaceRoot}",
-      "port": 9229
-    },
-    {
       "name": "onDeployed",
       "type": "node",
       "request": "launch",
@@ -90,11 +68,22 @@
       "port": 9229
     },
     {
-      "name": "Target Graph",
+      "name": "Destroy",
       "type": "node",
       "request": "launch",
       "runtimeExecutable": "gc",
-      "runtimeArgs": ["graph"],
+      "runtimeArgs": ["destroy", "-f"],
+      "internalConsoleOptions": "openOnSessionStart",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceRoot}",
+      "port": 9229
+    },
+    {
+      "name": "Info",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "gc",
+      "runtimeArgs": ["info"],
       "internalConsoleOptions": "openOnSessionStart",
       "console": "integratedTerminal",
       "cwd": "${workspaceRoot}",

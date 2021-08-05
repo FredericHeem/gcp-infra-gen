@@ -1,27 +1,25 @@
-const assert = require("assert");
 const { AwsProvider } = require("@grucloud/provider-aws");
-const hook = require("./hook");
+const ModuleAwsVpc = require("@grucloud/module-aws-vpc");
+const ModuleAwsEKS = require("@grucloud/module-aws-eks");
 
-const createResources = async ({ provider, resources: {} }) => {
-  const { stage } = provider.config;
+exports.createStack = async ({ createProvider }) => {
+  const provider = createProvider(AwsProvider, {
+    configs: [require("./config"), ModuleAwsVpc.config, ModuleAwsEKS.config],
+  });
 
-  return {};
-};
-exports.createResources = createResources;
-
-exports.createStack = async () => {
-  const provider = AwsProvider({ config: require("./config") });
-  const { stage } = provider.config;
-  assert(stage, "missing stage");
-
-  const resources = await createResources({
+  const vpcResources = await ModuleAwsVpc.createResources({
     provider,
-    resources: {},
+  });
+
+  const eksResources = await ModuleAwsEKS.createResources({
+    provider,
+    resources: vpcResources,
   });
 
   return {
     provider,
-    resources,
-    hooks: [hook],
+    resources: { vpc: vpcResources, eks: eksResources },
+    hooks: [...ModuleAwsVpc.hooks, ...ModuleAwsEKS.hooks],
+    isProviderUp: () => ModuleAwsEKS.isProviderUp({ resources: eksResources }),
   };
 };
