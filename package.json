@@ -1,24 +1,23 @@
 {
-  "name": "@grucloud/example-module-aws-eks",
+  "name": "example-grucloud-infra-aws",
   "version": "1.38.0",
-  "description": "Example for the AWS EKS GruCloud Module",
-  "main": "iac.js",
   "private": true,
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "graph-target": "gc graph --title 'EKS Module'",
-    "graph-live": "gc list --graph --title 'EKS Module'",
-    "test": "mocha"
+    "test": "mocha",
+    "graph-target": "gc graph",
+    "graph-live": "gc list --graph",
+    "e2e": "gc d -f && gc d && gc l && gc a -f && gc a && gc d -f && gc d && gc l -o"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@grucloud/core": "^1.38.0",
-    "@grucloud/module-aws-eks": "^1.38.0",
-    "@grucloud/module-aws-vpc": "^1.38.0",
     "@grucloud/provider-aws": "^1.38.0",
-    "rubico": "^1.6.27"
+    "rubico": "^1.6.29"
   },
   "devDependencies": {
-    "mocha": "^8.3.2"
+    "mocha": "^9.0.3"
   }
 }
